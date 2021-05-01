@@ -1,0 +1,49 @@
+{%include ('header.html')%}
+<div class="container-fluid">
+   <br />
+   <form action="{{url_for('download')}}" method="POST" id="idForm">
+      <div class="mb-3">
+         <label for="InputUrl" class="form-label">URL:</label>
+         <input type="text" name="urltodownload" class="form-control" id="urltodownload" aria-describedby="urlHelp" required>
+         <div id="urlHelp" class="form-text">Please Enter URL of Video you want to Download.</div>
+      </div>
+      <button type="submit" class="btn btn-primary">Download</button>
+   </form>
+</div>
+{%include ('footer.html')%}
+<script>
+   $("#idForm").submit(function(e) {
+   
+       e.preventDefault(); // avoid to execute the actual submit of the form.
+   
+       var form = $(this);
+       var url = form.attr('action');
+       
+       $.ajax({
+              type: "POST",
+              url: url,
+              data: form.serialize(), // serializes the form's elements.
+              success: function(data)
+              {	
+			  if (data == 'error'){
+				Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Something went wrong!'
+				})
+				}
+			   else{
+				$('#idForm').unbind('submit').submit();
+   		        }             
+              },
+   		   error: function(data)
+   		   {
+   		    Swal.fire({
+   			icon: 'error',
+   			title: 'Oops...',
+   			text: 'Something went wrong!'
+   			})
+   		   }
+        });       
+   });
+</script>
