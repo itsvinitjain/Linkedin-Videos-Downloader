@@ -1,3 +1,3 @@
 # Linkedin Videos Downloader
  Helps user to download linkedin videos 
- [http://linkedinvideosdownloader.tk/](http://linkedinvideosdownloader.tk/)
+ [linkedin-videos-downloader](https://linkedin-videos-downloader.herokuapp.com/)
